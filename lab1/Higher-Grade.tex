@@ -25,6 +25,28 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage[colorinlistoftodos]{todonotes}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{code_bg}{gray}{0.95}
+\lstset{
+	% language=Python,
+	basicstyle=\footnotesize\ttfamily,
+	backgroundcolor=\color[rgb]{0.95, 0.95, 0.95},
+	keywordstyle=\color[rgb]{0,0.5,0}\ttfamily,
+	stringstyle=\color{orange}\ttfamily,
+	commentstyle=\color{red}\ttfamily,
+	tabsize=2,
+	numbers=left, numberstyle=\tiny, numbersep=5pt,
+	breaklines=true,
+	breakatwhitespace=true,
+	prebreak={/},
+	captionpos=b,
+	columns=fullflexible,
+	escapeinside={\#*}{\^^M},
+	mathescape
+}
+\usepackage{hyperref}
 
 \begin{document}
 
@@ -40,8 +62,8 @@
 
 \textsc{\LARGE Uppsala University}\\[1.5cm] % Name of your university/college
 \includegraphics[scale=.1]{Uppsala_University_seal_svg.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
-\textsc{\Large Course name}\\[0.5cm] % Major heading such as course name
-\textsc{\large Course code}\\[0.5cm] % Minor heading such as course title
+\textsc{\Large Secure Coputer Systems I}\\[0.5cm] % Major heading such as course name
+\textsc{\large 1DT072}\\[0.5cm] % Minor heading such as course title
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -58,7 +80,7 @@
 \begin{minipage}{0.4\textwidth}
 \begin{flushleft} \large
 \emph{Author:}\\
-First name \textsc{Last name}\\ % Your name
+Arvid \textsc{Morelid}\\ % Your name
 \end{flushleft}
 
 \end{minipage}\\[2cm]
@@ -71,11 +93,17 @@ First name \textsc{Last name}\\ % Your name
 %	DATE SECTION
 %----------------------------------------------------------------------------------------
 
-{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+{\large \today}\\[2cm]package % Date, change the \today to a set date if you want to be precise
 
 \vfill % Fill the rest of the page with whitespace
 
 \end{titlepage}
+
+\section*{SQL Injections}
+To obtain a list of all users on the site, we utilise the product search page which lists all rows of the returned SQL table. To include the users in the query, which usually is limited to the 'Products' table, we enter the search term as seen in listing \ref{lst:sql}. 
+\begin{lstlisting}[caption={Search term to get all users in the database}, label={lst:sql}]
+    Nonmatching string')) UNION SELECT *, NULL, NULL, NULL FROM Users --|
+\end{lstlisting}
 
 
 \end{document}
